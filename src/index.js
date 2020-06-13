@@ -2,43 +2,46 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function Square(props) {
+const Square = (props) => {
   return (
     <button className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
-}
+};
 
-function Board(props) {
-  const renderSquare = (i) => {
-    return <Square
-        value={props.squares[i]}
-        onClick={() => {
-          props.onClick(i);
-        }}
-      />
-  };
+const renderSquare = (props) => {
+  return (
+    <Square
+      value={props.squares[props.i]}
+      onClick={() => {
+        props.onClick(props.i);
+      }}
+    />
+  );
+};
+
+const Board = (props) => {
   return (
     <div>
       <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
+        {renderSquare({ i: 0, ...props })}
+        {renderSquare({ i: 1, ...props })}
+        {renderSquare({ i: 2, ...props })}
       </div>
       <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
+        {renderSquare({ i: 3, ...props })}
+        {renderSquare({ i: 4, ...props })}
+        {renderSquare({ i: 5, ...props })}
       </div>
       <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
+        {renderSquare({ i: 6, ...props })}
+        {renderSquare({ i: 7, ...props })}
+        {renderSquare({ i: 8, ...props })}
       </div>
     </div>
   );
-}
+};
 
 class Game extends React.Component {
   constructor(props) {
