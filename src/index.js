@@ -10,12 +10,12 @@ const Square = (props) => {
   );
 };
 
-const renderSquare = (props) => {
+const renderSquare = ({i,...props}) => {
   return (
     <Square
-      value={props.squares[props.i]}
+      value={props.squares[i]}
       onClick={() => {
-        props.onClick(props.i);
+        props.onClick(i);
       }}
     />
   );
@@ -93,7 +93,7 @@ const Game = (props) => {
   return (
     <div className="game">
       <div className="game-board">
-        <Board squares={current.squares} onClick={(i) => handleClick(i)} />
+        <Board squares={current.squares} onClick={handleClick} />
       </div>
       <div className="game-info">
         <div>{status}</div>
